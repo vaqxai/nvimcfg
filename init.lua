@@ -26,6 +26,7 @@ require("lazy").setup({
   "junegunn/vim-easy-align",
   "preservim/nerdtree",
   "rebelot/kanagawa.nvim",
+  "Shatur/neovim-ayu",
   "rust-lang/rust.vim",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
@@ -50,6 +51,7 @@ require("lazy").setup({
   "junegunn/fzf",
   "junegunn/fzf.vim",
   "rmagatti/auto-session",
+  "nanozuki/tabby.nvim",
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -57,10 +59,15 @@ vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,te
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
 
-vim.cmd("colorscheme kanagawa")
-vim.cmd("set relativenumber")
+vim.cmd("colorscheme ayu")
+vim.cmd("set relativenumber number")
 vim.cmd("set hidden")
 vim.cmd("set ts=4")
+vim.cmd("set so=20")
+vim.cmd("nnoremap <C-J> <C-W> j")
+vim.cmd("nnoremap <C-K> <C-W> k")
+vim.cmd("nnoremap <C-L> <C-W> l")
+vim.cmd("nnoremap <C-H> <C-W> h")
 
 require("mason").setup({
 	ui = {
