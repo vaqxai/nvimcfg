@@ -52,6 +52,7 @@ require("lazy").setup({
   "junegunn/fzf.vim",
   "rmagatti/auto-session",
   "nanozuki/tabby.nvim",
+  "tpope/vim-surround",
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
