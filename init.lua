@@ -41,9 +41,9 @@ require("lazy").setup({
   "hrsh7th/cmp-buffer",
   "hrsh7th/vim-vsnip",
   {"nvim-telescope/telescope.nvim", tag = '0.1.6',
-	dependencies = {
-		'nvim-lua/plenary.nvim'
-	}
+  	dependencies = {
+  		'nvim-lua/plenary.nvim'
+  	}
   },
   "nvim-lua/plenary.nvim",
   "dawsers/telescope-locate.nvim",
@@ -53,6 +53,7 @@ require("lazy").setup({
   "rmagatti/auto-session",
   "nanozuki/tabby.nvim",
   "kylechui/nvim-surround",
+  "sourcegraph/sg.nvim",
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
