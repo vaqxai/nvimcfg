@@ -204,3 +204,5 @@ vim.cmd("set grepprg=rg\\ --vimgrep\\ --smart-case\\ --follow")
 require("auto-session").setup({
 		auto_session_root_dir = vim.fn.stdpath('data') .. "/sessions/",
 })
+
+require("sg").setup()
