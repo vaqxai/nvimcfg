@@ -49,11 +49,20 @@ require("lazy").setup({
   "nvim-lua/plenary.nvim",
   "dawsers/telescope-locate.nvim",
   "tpope/vim-vinegar",
+  "tpope/vim-unimpaired",
   "junegunn/fzf",
   "junegunn/fzf.vim",
   "rmagatti/auto-session",
   "nanozuki/tabby.nvim",
   "kylechui/nvim-surround",
+  "tpope/vim-commentary",
+{
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}) function
+},
   "sourcegraph/sg.nvim",
   {
     "kristijanhusak/vim-dadbod-ui",
@@ -114,6 +123,14 @@ require("lazy").setup({
 	  -- Depending on your nvim distro or config you may need to make the loading not lazy
 	  lazy = false,
 	},
+{
+  'nanozuki/tabby.nvim',
+  event = 'VimEnter',
+  dependencies = 'nvim-tree/nvim-web-devicons',
+  config = function()
+    -- configs...
+  end,
+},
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -140,6 +157,7 @@ require("mason").setup({
 		},
 	}
 })
+require("neoconf").setup()
 require("mason-lspconfig").setup()
 
 local sign = function(opts)
@@ -269,6 +287,8 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
+
+nnoremap <leader>n :noh<CR>
 ]])
 
 vim.cmd("set grepprg=rg\\ --vimgrep\\ --smart-case\\ --follow")
@@ -281,3 +301,13 @@ require("sg").setup()
 -- require('notebook').setup()
 -- require('mini.hipatterns').setup()
 require("jupytext").setup()
+vim.o.showtabline = 2
+vim.o.sessionoptions = 'curdir,folds,globals,help,tabpages,terminal,winsize'
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
