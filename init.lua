@@ -75,7 +75,8 @@ require("lazy").setup({
   "rcarriga/nvim-notify",   -- optional
   "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
   "diegoulloao/neofusion.nvim",
-  "meatballs/notebook.nvim",
+  -- "meatballs/notebook.nvim",
+  "imbue-ai/jupyter_ascending.vim",
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -231,6 +232,10 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
+
+nmap <leader><leader>x <Plug>JupyterExecute
+nmap <leader><leader>X <Plug>JupyterExecuteAll
+nmap <leader><leader>r <Plug>JupyterRestart
 ]])
 
 vim.cmd("set grepprg=rg\\ --vimgrep\\ --smart-case\\ --follow")
