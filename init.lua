@@ -78,7 +78,6 @@ require("lazy").setup({
   { "dccsillag/magma-nvim",
     init = function()
         vim.cmd[[
-        UpdateRemotePlugins
         nnoremap <silent><expr> <LocalLeader>r  :MagmaEvaluateOperator<CR>
         nnoremap <silent>       <LocalLeader>rr :MagmaEvaluateLine<CR>
         xnoremap <silent>       <LocalLeader>r  :<C-u>MagmaEvaluateVisual<CR>
