@@ -75,8 +75,39 @@ require("lazy").setup({
   "rcarriga/nvim-notify",   -- optional
   "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
   "diegoulloao/neofusion.nvim",
+	{
+	  "echasnovski/mini.hipatterns",
+	  event = "VeryLazy",
+	  dependencies = { "GCBallesteros/NotebookNavigator.nvim" },
+	  opts = function()
+	    local nn = require "notebook-navigator"
+	
+	    local opts = { highlighters = { cells = nn.minihipatterns_spec } }
+	    return opts
+	  end,
+	},
   -- "meatballs/notebook.nvim",
-  "goerz/jupytext.vim",
+	{
+	  "GCBallesteros/NotebookNavigator.nvim",
+	  keys = {
+	    { "]h", function() require("notebook-navigator").move_cell "d" end },
+	    { "[h", function() require("notebook-navigator").move_cell "u" end },
+	    { "<leader>X", "<cmd>lua require('notebook-navigator').run_cell()<cr>" },
+	    { "<leader>x", "<cmd>lua require('notebook-navigator').run_and_move()<cr>" },
+	  },
+	  dependencies = {
+	    "echasnovski/mini.comment",
+	    "hkupty/iron.nvim", -- repl provider
+	    -- "akinsho/toggleterm.nvim", -- alternative repl provider
+	    -- "benlubas/molten-nvim", -- alternative repl provider
+	    "anuvyklack/hydra.nvim",
+	  },
+	  event = "VeryLazy",
+	  config = function()
+	    local nn = require "notebook-navigator"
+	    nn.setup({ activate_hydra_keys = "<leader>h" })
+	  end,
+	},
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -232,10 +263,6 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
-
-nmap <leader><leader>x <Plug>JupyterExecute
-nmap <leader><leader>X <Plug>JupyterExecuteAll
-nmap <leader><leader>r <Plug>JupyterRestart
 ]])
 
 vim.cmd("set grepprg=rg\\ --vimgrep\\ --smart-case\\ --follow")
@@ -246,4 +273,4 @@ require("auto-session").setup({
 
 require("sg").setup()
 -- require('notebook').setup()
-
+require('mini.hipatterns').setup()
