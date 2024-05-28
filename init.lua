@@ -73,6 +73,7 @@ require("lazy").setup({
     end,
   },
   "luk400/vim-jukit",
+  "diegoulloao/neofusion.nvim",
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
