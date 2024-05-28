@@ -76,7 +76,7 @@ require("lazy").setup({
   "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
   "diegoulloao/neofusion.nvim",
   -- "meatballs/notebook.nvim",
-  "imbue-ai/jupyter_ascending.vim",
+  "goerz/jupytext.vim",
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
