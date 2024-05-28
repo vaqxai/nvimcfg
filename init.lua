@@ -246,3 +246,4 @@ require("auto-session").setup({
 })
 
 require("sg").setup()
+require("jupynium").setup()
