@@ -72,7 +72,8 @@ require("lazy").setup({
       vim.g.db_ui_use_nerd_fonts = 0
     end,
   },
-  "luk400/vim-jukit",
+  -- "luk400/vim-jukit",
+  "goerz/jupytext.vim",
   "diegoulloao/neofusion.nvim",
 })
 
