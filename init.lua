@@ -89,6 +89,7 @@ require("lazy").setup({
         let g:magma_image_provider = "ueberzug"
         ]]
 		end,
+	  lazy = false
   }
 })
 
