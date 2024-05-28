@@ -72,10 +72,25 @@ require("lazy").setup({
       vim.g.db_ui_use_nerd_fonts = 0
     end,
   },
-  "luk400/vim-jukit",
   "rcarriga/nvim-notify",   -- optional
   "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
   "diegoulloao/neofusion.nvim",
+  { "dccsillag/magma-nvim",
+    init = function()
+        vim.cmd[[
+        UpdateRemotePlugins
+        nnoremap <silent><expr> <LocalLeader>r  :MagmaEvaluateOperator<CR>
+        nnoremap <silent>       <LocalLeader>rr :MagmaEvaluateLine<CR>
+        xnoremap <silent>       <LocalLeader>r  :<C-u>MagmaEvaluateVisual<CR>
+        nnoremap <silent>       <LocalLeader>rc :MagmaReevaluateCell<CR>
+        nnoremap <silent>       <LocalLeader>rd :MagmaDelete<CR>
+        nnoremap <silent>       <LocalLeader>ro :MagmaShowOutput<CR>
+        
+        let g:magma_automatically_open_output = v:false
+        let g:magma_image_provider = "ueberzug"
+        ]]
+		end,
+  }
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
