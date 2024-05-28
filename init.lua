@@ -73,7 +73,7 @@ require("lazy").setup({
     end,
   },
   -- "luk400/vim-jukit",
-  "goerz/jupytext.vim",
+  "kiyoon/jupynium.nvim",
   "diegoulloao/neofusion.nvim",
 })
 
