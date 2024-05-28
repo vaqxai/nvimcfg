@@ -65,7 +65,6 @@ require("lazy").setup({
 		-- use opts = {} for passing setup options
 		-- this is equalent to setup({}) function
 	},
-	"sourcegraph/sg.nvim",
 	{
 		"kristijanhusak/vim-dadbod-ui",
 		dependencies = {
@@ -310,7 +309,6 @@ require("auto-session").setup({
 	auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
 })
 
-require("sg").setup()
 -- require('notebook').setup()
 -- require('mini.hipatterns').setup()
 require("jupytext").setup()
