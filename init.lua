@@ -72,7 +72,7 @@ require("lazy").setup({
       vim.g.db_ui_use_nerd_fonts = 0
     end,
   },
-  "diegoulloao/neofusion.nvim",
+  "luk400/vim-jukit",
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
