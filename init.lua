@@ -87,7 +87,6 @@ require("lazy").setup({
 	  end,
 	},
   -- "meatballs/notebook.nvim",
-	--[[
 	{
 	  "GCBallesteros/NotebookNavigator.nvim",
 	  keys = {
@@ -109,15 +108,12 @@ require("lazy").setup({
 	    nn.setup({ activate_hydra_keys = "<leader>h" })
 	  end,
 	},
-	]]--
-  {
-    "kiyoon/jupynium.nvim",
-    build = "pip3 install --user .",
-    -- build = "conda run --no-capture-output -n jupynium pip install .",
-    -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
-  },
-  "rcarriga/nvim-notify",   -- optional
-  "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
+	{
+		"GCBallesteros/jupytext.nvim",
+	  config = true,
+	  -- Depending on your nvim distro or config you may need to make the loading not lazy
+	  lazy = false,
+	},
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -284,5 +280,4 @@ require("auto-session").setup({
 require("sg").setup()
 -- require('notebook').setup()
 -- require('mini.hipatterns').setup()
-require('jupynium').setup()
-require("jupynium").get_folds()
+require("jupytext").setup()
