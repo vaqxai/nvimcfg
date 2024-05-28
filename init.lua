@@ -72,6 +72,7 @@ require("lazy").setup({
       vim.g.db_ui_use_nerd_fonts = 0
     end,
   },
+  "luk400/vim-jukit",
   "rcarriga/nvim-notify",   -- optional
   "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
   "diegoulloao/neofusion.nvim",
