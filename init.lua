@@ -72,6 +72,7 @@ require("lazy").setup({
       vim.g.db_ui_use_nerd_fonts = 0
     end,
   },
+	"diegoulloao/neofusion.nvim",
 })
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -79,7 +80,7 @@ vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,te
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
 
-vim.cmd("colorscheme ayu")
+vim.cmd("colorscheme neofusion")
 vim.cmd("set relativenumber number")
 vim.cmd("set hidden")
 vim.cmd("set ts=4")
