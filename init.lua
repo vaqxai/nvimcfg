@@ -19,7 +19,10 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 vim.g.maplocalleader = "\\" -- Same for `maplocalleader`
 
 require("lazy").setup({
+	"mfussenegger/nvim-dap",
 	"nvim-treesitter/nvim-treesitter",
+	"lewis6991/hover.nvim",
+	"Wansmer/symbol-usage.nvim",
 	"folke/which-key.nvim",
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	"folke/neodev.nvim",
@@ -31,7 +34,7 @@ require("lazy").setup({
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig",
-	"mrcjkb/rustaceanvim",
+	{ "mrcjkb/rustaceanvim", lazy = false },
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-nvim-lua",
@@ -58,29 +61,13 @@ require("lazy").setup({
 	"kylechui/nvim-surround",
 	"tpope/vim-commentary",
 	"stevearc/conform.nvim",
+	"tpope/vim-dadbod",
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true,
 		-- use opts = {} for passing setup options
 		-- this is equalent to setup({}) function
-	},
-	{
-		"kristijanhusak/vim-dadbod-ui",
-		dependencies = {
-			{ "tpope/vim-dadbod", lazy = true },
-			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql", "tsql" }, lazy = true },
-		},
-		cmd = {
-			"DBUI",
-			"DBUIToggle",
-			"DBUIAddConnection",
-			"DBUIFindBuffer",
-		},
-		init = function()
-			-- Your DBUI configuration
-			vim.g.db_ui_use_nerd_fonts = 0
-		end,
 	},
 	"rcarriga/nvim-notify", -- optional
 	"stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
@@ -155,6 +142,8 @@ vim.opt.relativenumber = true
 vim.o.statuscolumn = "%s %l %r "
 vim.cmd("set hidden")
 vim.cmd("set ts=4")
+vim.cmd("set expandtab")
+vim.cmd("set shiftwidth=4")
 vim.cmd("set so=20")
 vim.cmd("nnoremap <C-J> <C-W> j")
 vim.cmd("nnoremap <C-K> <C-W> k")
@@ -340,3 +329,50 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		require("conform").format({ bufnr = args.buf })
 	end,
 })
+
+local lspconfig = require("lspconfig")
+
+require("mason-lspconfig").setup_handlers({
+	-- The first entry (without a key) will be the default handler
+	-- and will be called for each installed server that doesn't have
+	-- a dedicated handler.
+	function(server_name) -- default handler (optional)
+		require("lspconfig")[server_name].setup({})
+	end,
+	-- Next, you can provide a dedicated handler for specific servers.
+	-- For example, a handler override for the `rust_analyzer`:
+	["rust_analyzer"] = function() end,
+})
+
+require("hover").setup({
+	init = function()
+		require("hover.providers.lsp")
+		require("hover.providers.gh")
+		require("hover.providers.dap")
+	end,
+	preview_opts = {
+		border = "single",
+	},
+	preview_windows = false,
+	title = true,
+	mouse_providers = {
+		"LSP",
+	},
+	mouse_delay = 1000,
+})
+
+-- Setup keymaps
+vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
+vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+vim.keymap.set("n", "<C-p>", function()
+	require("hover").hover_switch("previous")
+end, { desc = "hover.nvim (previous source)" })
+vim.keymap.set("n", "<C-n>", function()
+	require("hover").hover_switch("next")
+end, { desc = "hover.nvim (next source)" })
+
+-- Mouse support
+vim.keymap.set("n", "<MouseMove>", require("hover").hover_mouse, { desc = "hover.nvim (mouse)" })
+vim.o.mousemoveevent = true
+
+require("symbol-usage").setup({})
