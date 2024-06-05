@@ -27,9 +27,11 @@ require("lazy").setup({
     {
         "voldikss/vim-floaterm",
         init = function()
-            vim.cmd("nnoremap <Leader>tt :FloatermToggle<CR>")
-            vim.cmd("nnoremap <Leader>tn :FloatermNew powershell<CR>")
-            vim.cmd("nnoremap <Leader>tk :FloatermKill<CR>")
+            vim.cmd("nnoremap <silent> <Leader>tt :FloatermToggle<CR>")
+            vim.cmd("nnoremap <silent> <Leader>to :FloatermNew --position=bottom powershell<CR>")
+            vim.cmd("nnoremap <silent> <Leader>tp :FloatermPrev<CR>")
+            vim.cmd("nnoremap <silent> <Leader>tn :FloatermNext<CR>")
+            vim.cmd("nnoremap <silent> <Leader>tk :FloatermKill<CR>")
             vim.cmd("tnoremap <Esc> <C-\\><C-n>")
         end,
     },
