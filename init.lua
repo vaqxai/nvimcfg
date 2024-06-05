@@ -1,6 +1,11 @@
+-- disable netrw for nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-vim.cmd("set shellslash")
+-- Only for cygwin/fish
+-- vim.cmd("set shellslash")
 
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -19,15 +24,52 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 vim.g.maplocalleader = "\\" -- Same for `maplocalleader`
 
 require("lazy").setup({
+    {
+        "voldikss/vim-floaterm",
+        init = function()
+            vim.cmd("nnoremap <Leader>tt :FloatermToggle<CR>")
+            vim.cmd("nnoremap <Leader>tn :FloatermNew powershell<CR>")
+            vim.cmd("nnoremap <Leader>tk :FloatermKill<CR>")
+            vim.cmd("tnoremap <Esc> <C-\\><C-n>")
+        end,
+    },
+    "kristijanhusak/vim-dadbod-ui",
 	"mfussenegger/nvim-dap",
+    "ludovicchabant/vim-gutentags",
 	"nvim-treesitter/nvim-treesitter",
 	"lewis6991/hover.nvim",
 	"Wansmer/symbol-usage.nvim",
-	"folke/which-key.nvim",
+    {
+      "folke/which-key.nvim",
+      event = "VeryLazy",
+      init = function()
+        vim.o.timeout = true
+        vim.o.timeoutlen = 300
+      end,
+      opts = {}
+    },
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	"folke/neodev.nvim",
 	"junegunn/vim-easy-align",
-	"preservim/nerdtree",
+    {
+        "nvim-tree/nvim-tree.lua",
+        init = function()
+            vim.opt.termguicolors = true
+            require("nvim-tree").setup({
+                sync_root_with_cwd = true,
+                prefer_startup_root = true,
+            })
+            vim.cmd("nnoremap <Leader>e :NvimTreeToggle<CR>")
+        end,
+    },
+    {
+       "folke/tokyonight.nvim",
+       lazy = false,
+       priority = 1000,
+       config = function()
+           vim.cmd([[colorscheme tokyonight]])
+       end,
+    },
 	"rebelot/kanagawa.nvim",
 	"Shatur/neovim-ayu",
 	"rust-lang/rust.vim",
@@ -136,7 +178,6 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
 
-vim.cmd("colorscheme neofusion")
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.o.statuscolumn = "%s %l %r "
@@ -342,6 +383,17 @@ require("mason-lspconfig").setup_handlers({
 	-- Next, you can provide a dedicated handler for specific servers.
 	-- For example, a handler override for the `rust_analyzer`:
 	["rust_analyzer"] = function() end,
+    ["lua_ls"] = function() 
+        require("lspconfig").lua_ls.setup({
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { 'vim' }
+                    }
+                }
+            }
+        })
+    end,
 })
 
 require("hover").setup({
