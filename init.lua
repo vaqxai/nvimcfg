@@ -25,15 +25,27 @@ vim.g.maplocalleader = "\\" -- Same for `maplocalleader`
 
 require("lazy").setup({
     {
+        "hedyhli/outline.nvim",
+        lazy = true,
+        cmd = { "Outline", "OutlineOpen" },
+        keys = {
+            { "<Leader>o", "<cmd>Outline<CR>", desc = "Toggle outline"},
+        },
+        opts = {
+            -- Custom config
+        }
+    },
+    "github/copilot.vim",
+    {
         "voldikss/vim-floaterm",
-        init = function()
-            vim.cmd("nnoremap <silent> <Leader>tt :FloatermToggle<CR>")
-            vim.cmd("nnoremap <silent> <Leader>to :FloatermNew --position=bottom powershell<CR>")
-            vim.cmd("nnoremap <silent> <Leader>tp :FloatermPrev<CR>")
-            vim.cmd("nnoremap <silent> <Leader>tn :FloatermNext<CR>")
-            vim.cmd("nnoremap <silent> <Leader>tk :FloatermKill<CR>")
-            vim.cmd("tnoremap <Esc> <C-\\><C-n>")
-        end,
+        keys = {
+            { "<Leader>tt", "<cmd>FloatermToggle<CR>", desc = "Toggle terminal"},
+            { "<Leader>to", "<cmd>FloatermNew --position=bottom powershell<CR>", desc = "Open terminal"},
+            { "<Leader>tp", "<cmd>FloatermPrev<CR>", desc = "Previous terminal"},
+            { "<Leader>tn", "<cmd>FloatermNext<CR>", desc = "Next terminal"},
+            { "<Leader>tk", "<cmd>FloatermKill<CR>", desc = "Kill terminal"},
+            { "<ESC>", "<C-\\><C-n>", desc = "Exit Terminal", mode = "t"},
+        },
     },
     "kristijanhusak/vim-dadbod-ui",
 	"mfussenegger/nvim-dap",
@@ -61,19 +73,18 @@ require("lazy").setup({
                 sync_root_with_cwd = true,
                 prefer_startup_root = true,
             })
-            vim.cmd("nnoremap <Leader>e :NvimTreeToggle<CR>")
+            vim.cmd("nnoremap <silent> <Leader>e :NvimTreeToggle<CR>")
         end,
     },
     {
-       "folke/tokyonight.nvim",
+	   "Shatur/neovim-ayu",
        lazy = false,
        priority = 1000,
        config = function()
-           vim.cmd([[colorscheme tokyonight]])
+           vim.cmd([[colorscheme ayu]])
        end,
     },
 	"rebelot/kanagawa.nvim",
-	"Shatur/neovim-ayu",
 	"rust-lang/rust.vim",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
