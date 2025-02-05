@@ -141,7 +141,7 @@ require("lazy").setup({
 		config = function()
 			-- configs...
 		end,
-	},
+	}
 })
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -343,3 +343,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 vim.keymap.set("n", "<leader>fh", ts_builtin.help_tags, {})
 vim.cmd("nnoremap <leader>e :NERDTreeToggle<CR>")
+
+require("lspconfig").pyright.setup {}
