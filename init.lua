@@ -149,7 +149,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
 
-vim.cmd("colorscheme neofusion")
+vim.cmd("colorscheme ayu")
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.o.statuscolumn = "%s %l %r "
@@ -340,3 +340,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		require("conform").format({ bufnr = args.buf })
 	end,
 })
+
+vim.keymap.set("n", "<leader>fh", ts_builtin.help_tags, {})
+vim.cmd("nnoremap <leader>e :NERDTreeToggle<CR>")
