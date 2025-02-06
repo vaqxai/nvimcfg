@@ -22,4 +22,33 @@ return {
   -- 		},
   -- 	},
   -- },
+
+  {
+    "simrat39/symbols-outline.nvim",
+    keys = {
+      { "<leader>ss", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" }
+    },
+    config = function()
+      require("symbols-outline").setup()
+    end
+  },
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    opts = {
+      suppressed_dirs = {'~/', '~/Downloads', '/'},
+    }
+  },
+  {
+    "f-person/git-blame.nvim",
+    event = "VeryLazy",
+    opts = {
+      enabled = true,
+      message_template = " <summary> • <date> • <author> • <<sha>>",
+      date_format = "%d.%m.%Y %H:%M:%S",
+      virtual_text_column = 1,
+    }
+  }
 }
