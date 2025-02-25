@@ -53,5 +53,10 @@ return {
       date_format = "%d.%m.%Y %H:%M:%S",
       virtual_text_column = 1,
     }
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = true
   }
 }
