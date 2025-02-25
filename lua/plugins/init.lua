@@ -56,6 +56,10 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
+    keys = {
+      {"<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Term"},
+      {"<Esc>", "<C-\\><C-n>", desc = "Exit Terminal Mode", mode="t"}
+    },
     version = "*",
     config = true
   }
